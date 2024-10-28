@@ -1,10 +1,9 @@
 import React  from "react";
-import {   StyleSheet,   } from 'react-native';
 import styled from "styled-components/native"
 import { Card } from 'react-native-paper';
 import { SvgXml } from 'react-native-svg';
 import star from "../../../../assets/star";
-
+import open from "../../../../assets/open";
 
 const RestaurantCard= styled(Card)`
 color: ${(props)=>props.theme.colors.ui.primary};
@@ -30,7 +29,20 @@ padding:${(props)=>props.theme.space[3]};
 
 const Rating =styled.View`
 flex-direction:row;
-padding:${(props)=>props.theme.space[2]};
+padding-top:${(props)=>props.theme.space[2]};
+padding-bottom:${(props)=>props.theme.space[2]};
+`;
+const Selection =styled.View`
+flex-direction:row;
+align-items:center;
+`;
+const SelectionEnd =styled.View`
+flex:1;
+flex-direction:row;
+justify-content: flex-end;
+`;
+const Open= styled(SvgXml)`
+flex-direction:row;
 `;
 
 export const RestaurantInfo = ({restaurant ={}}) =>{
@@ -50,13 +62,19 @@ return(
         < RestaurantCardCover key={name}  source={{uri:photos[0]}}/>
         <Info>
         <Title>{name}</Title>
+        <Selection>
         <Rating>
         {ratingArray.map((_, index) => (
     <SvgXml key={index} xml={star} width={20} height={20} />
 ))}  
+
        </Rating>
+      <SelectionEnd>
+        {isOpenNow &&   <Open xml={open} width={20} height={20} />}
+        </SelectionEnd> 
+        </Selection>
        
-        <Address>{address}</Address>
+        <Address>{address} </Address>
         </Info>
      
     </RestaurantCard>
