@@ -4,6 +4,7 @@ import { Card } from 'react-native-paper';
 import { SvgXml } from 'react-native-svg';
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { View , Image, Text} from "react-native";
 
 const RestaurantCard= styled(Card)`
 color: ${(props)=>props.theme.colors.ui.primary};
@@ -48,12 +49,12 @@ flex-direction:row;
 export const RestaurantInfo = ({restaurant ={}}) =>{
     const {
 name= 'Pizza Slice',
-icon,
+icon="https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
 photos =["https://media.istockphoto.com/id/938742222/photo/cheesy-pepperoni-pizza.jpg?b=1&s=612x612&w=0&k=20&c=ZcLXrogjpyc5froC5ZIP-0uepbhldATwmCbt3mzViGQ="],
 address="1000 some random street",
 isOpenNow=true,
 rating= 4,
-isClosedTemporarily
+isClosedTemporarily=true
     } = restaurant;
 
     const ratingArray= Array.from(new Array(Math.floor(rating)));
@@ -70,7 +71,15 @@ return(
 
        </Rating>
       <SelectionEnd>
+        {isClosedTemporarily && (
+            <Text variant='label' style={{color:'red'}}>
+            Closed Temporarily
+            </Text>
+        )}
+        <View style={{paddingLeft:16}}/>
         {isOpenNow &&   <Open xml={open} width={20} height={20} />}
+        <View style={{paddingLeft:16}}/>
+        <Image style={{width:15,height:15}}  source={{uri :icon}}/>
         </SelectionEnd> 
         </Selection>
        
