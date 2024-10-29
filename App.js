@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-
+import {restarantRequest} from "./src/services/restaurants/restaurant.service";
 
 const Tab = createBottomTabNavigator();
 const Setttings = ()=> <Text>Setttings </Text>;
