@@ -5,6 +5,7 @@ import { SvgXml } from 'react-native-svg';
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { View , Image, Text} from "react-native";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 const RestaurantCard= styled(Card)`
 color: ${(props)=>props.theme.colors.ui.primary};
@@ -76,13 +77,13 @@ return(
             Closed Temporarily
             </Text>
         )}
-        <View style={{paddingLeft:16}}/>
+       <Spacer position="left" size="large"/>
         {isOpenNow &&   <Open xml={open} width={20} height={20} />}
-        <View style={{paddingLeft:16}}/>
+        <Spacer position="left" size="large"/>
         <Image style={{width:15,height:15}}  source={{uri :icon}}/>
         </SelectionEnd> 
         </Selection>
-       
+
         <Address>{address} </Address>
         </Info>
      
