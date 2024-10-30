@@ -4,11 +4,13 @@ import styled from "styled-components/native"
 import { 
   FlatList,
   SafeAreaView,
-  StatusBar
+  StatusBar,
+  View
  } from 'react-native';
 
 import { RestaurantInfo } from  '../components/restaurant-info.component';
 import {RestaurantsContext} from "../../../services/restaurants/restaurant.context";
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
@@ -26,11 +28,31 @@ const RestarantList= styled(FlatList).attrs({
 })`
 `;
 
+const Loading= styled(ActivityIndicator)`
+marginLeft: -25px`;
+
+
+const LoadingContainer= styled.View`
+position:absolute;
+top:50%;
+left:50%;
+`;
+
+
 export const RestaurantsScreen =()=>
 { 
   const {restaurants,isLoading, error} = useContext(RestaurantsContext);
+
   return(
 <SafeArea >
+  {isLoading && (
+<LoadingContainer >
+<Loading size={50}
+animating={true}
+theme={{ colors: { primary: 'tomato' } }}
+/>
+</LoadingContainer>
+  )}
     <SearchContainer>
   <Searchbar placeholder='search'/>
     </SearchContainer>
