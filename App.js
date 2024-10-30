@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import {restarantRequest} from "./src/services/restaurants/restaurant.service";
+import {RestaurantsContextProvider} from "./src/services/restaurants/restaurant.context"
 
 const Tab = createBottomTabNavigator();
 const Setttings = ()=> <Text>Setttings </Text>;
@@ -31,7 +31,8 @@ export default function App() {
   <>
   
   <ThemeProvider theme={theme}>
-  <NavigationContainer>
+    <RestaurantsContextProvider>
+    <NavigationContainer>
   <Tab.Navigator
    screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
@@ -59,6 +60,8 @@ export default function App() {
         <Tab.Screen name="Settings" component={Setttings} />
       </Tab.Navigator>
   </NavigationContainer>
+    </RestaurantsContextProvider>
+  
     </ThemeProvider>
     <ExpoStatusBar/>
   </>
