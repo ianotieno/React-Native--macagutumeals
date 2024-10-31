@@ -21,10 +21,11 @@ export const RestaurantInfo = ({restaurant ={}}) =>{
 name= 'Pizza Slice',
 icon="https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
 photos =["https://media.istockphoto.com/id/938742222/photo/cheesy-pepperoni-pizza.jpg?b=1&s=612x612&w=0&k=20&c=ZcLXrogjpyc5froC5ZIP-0uepbhldATwmCbt3mzViGQ="],
-address="1000 some random street",
+vicinity="1000 some random street",
 isOpenNow=true,
 rating= 4,
-isClosedTemporarily=true
+isClosedTemporarily=true,
+placeId
     } = restaurant;
 
     const ratingArray= Array.from(new Array(Math.floor(rating)));
@@ -35,8 +36,8 @@ return(
         <Text varient='label'>{name}</Text>
         <Section>
         <Rating>
-        {ratingArray.map((_, index) => (
-    <SvgXml key={index} xml={star} width={20} height={20} />
+        {ratingArray.map((_, i) => (
+    <SvgXml key={`star-${placeId}-${i}`} xml={star} width={20} height={20} />
 ))}  
 
        </Rating>
@@ -53,7 +54,7 @@ return(
         </SectionEnd> 
         </Section>
 
-        <Address>{address} </Address>
+        <Address>{vicinity} </Address>
         </Info>
      
     </RestaurantCard>
