@@ -7,6 +7,7 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato"; 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurant.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigator } from './src/infrastructure/navigation/index';
+import { View } from "react-native";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
@@ -18,6 +19,7 @@ export default function App() {
 
   return (
     <>
+     <View style={{ flex: 1, padding: 0, margin: 0 }}>
       <ThemeProvider theme={theme}>
         <LocationContextProvider>
           <RestaurantsContextProvider>
@@ -26,6 +28,7 @@ export default function App() {
         </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
+      </View>
     </>
   );
 }

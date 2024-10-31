@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { RestaurantsScreen } from '../../features/restaurants/screens/restaurant.screen';
+import { RestaurantsNavigator } from './restaurant.navigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,13 +11,13 @@ const Settings = () => <Text>Settings</Text>;
 const Map = () => <Text>Map</Text>;
 
 export const AppNavigator = () => (
-  <NavigationContainer>
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
+  <NavigationContainer  >
+    <Tab.Navigator 
+      screenOptions={({ route, }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-
-          if (route.name === 'Restaurants') {
+ 
+          if (route.name === 'Restaurant') {
             iconName = focused ? 'restaurant' : 'restaurant-outline';
           } else if (route.name === 'Map') {
             iconName = focused ? 'map' : 'map-outline';
@@ -31,7 +31,7 @@ export const AppNavigator = () => (
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+      <Tab.Screen name="Restaurant" component={RestaurantsNavigator} screenOptions={{ headerShown: false}} />
       <Tab.Screen name="Map" component={Map} />
       <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
