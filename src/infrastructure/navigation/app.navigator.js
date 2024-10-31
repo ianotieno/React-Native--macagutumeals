@@ -3,14 +3,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { RestaurantsScreen } from "../../features/restaurants/screens/restaurant.screen"
+import { RestaurantsScreen } from '../../features/restaurants/screens/restaurant.screen';
 
 const Tab = createBottomTabNavigator();
 
 const Settings = () => <Text>Settings</Text>;
 const Map = () => <Text>Map</Text>;
 
-export const AppNgitavigator = () => (
+export const AppNavigator = () => (
   <NavigationContainer>
     <Tab.Navigator
       screenOptions={({ route }) => ({

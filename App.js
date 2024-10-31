@@ -6,7 +6,7 @@ import { useFonts as useOswald, Oswald_400Regular } from "@expo-google-fonts/osw
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato"; // Correct Lato font
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurant.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
-import { Navigator } from './src/infrastructure/navigation';
+import { Navigator } from './src/infrastructure/navigation/index';
 
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
