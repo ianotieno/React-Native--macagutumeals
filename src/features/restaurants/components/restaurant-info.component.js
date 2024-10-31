@@ -21,7 +21,7 @@ export const RestaurantInfo = ({restaurant ={}}) =>{
 name= 'Pizza Slice',
 icon="https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
 photos =["https://media.istockphoto.com/id/938742222/photo/cheesy-pepperoni-pizza.jpg?b=1&s=612x612&w=0&k=20&c=ZcLXrogjpyc5froC5ZIP-0uepbhldATwmCbt3mzViGQ="],
-vicinity="1000 some random street",
+address="1000 some random street",
 isOpenNow=true,
 rating= 4,
 isClosedTemporarily=true
@@ -53,7 +53,7 @@ return(
         </SectionEnd> 
         </Section>
 
-        <Address>{vicinity} </Address>
+        <Address>{address} </Address>
         </Info>
      
     </RestaurantCard>
