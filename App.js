@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <>
-     <View style={{ flex: 1, padding: 0, margin: 0 }}>
+     
       <ThemeProvider theme={theme}>
         <LocationContextProvider>
           <RestaurantsContextProvider>
@@ -28,7 +28,7 @@ export default function App() {
         </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
-      </View>
+     
     </>
   );
 }
