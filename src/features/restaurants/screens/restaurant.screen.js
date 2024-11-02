@@ -1,9 +1,7 @@
 import React, {useContext} from "react";
 import styled from "styled-components/native"
 import { 
-  FlatList,
-  SafeAreaView,
-  StatusBar,
+  FlatList
  } from 'react-native';
 
 import { RestaurantInfo } from  '../components/restaurant-info.component';

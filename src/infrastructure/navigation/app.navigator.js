@@ -30,7 +30,7 @@ export const AppNavigator = () => (
         },
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
-        headerShown: false,
+         headerShown: false,
       })}
     >
       <Tab.Screen name="Restaurant" component={RestaurantsNavigator}  />
