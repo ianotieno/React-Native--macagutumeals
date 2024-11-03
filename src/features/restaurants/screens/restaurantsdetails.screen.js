@@ -5,7 +5,7 @@ import {List,Divider} from "react-native-paper"
 import { ScrollView } from "react-native";
 
 
-export const RestaurantsDetails=({route})=>{
+export const RestaurantsDetails=({route,navigation})=>{
 const [breakfastExpanded,setBreakfastExpanded]=useState(false);
 const [lunchExpanded,setLunchExpanded]=useState(false);
 const [dinnerExpanded,setDinnerExpanded]=useState(false);
@@ -71,7 +71,16 @@ return(
           <Divider />
           <List.Item title="Fanta" />
         </List.Accordion>
+        <Divider />
+        <List.Accordion
+  title="Map"
+  left={(props) => <List.Icon {...props} icon="map" />}
+  onPress={() => navigation.navigate("Map", { restaurant })}
+>
+</List.Accordion>
+
         </ScrollView>
+        
     </SafeArea>
 )
 
