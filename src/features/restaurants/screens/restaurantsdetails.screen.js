@@ -72,12 +72,11 @@ return(
           <List.Item title="Fanta" />
         </List.Accordion>
         <Divider />
-        <List.Accordion
+        <List.Item
   title="Go To Location in Map"
   left={(props) => <List.Icon {...props} icon="map" />}
   onPress={() => navigation.navigate("Map", { restaurant })}
 />
-
 
         </ScrollView>
         
