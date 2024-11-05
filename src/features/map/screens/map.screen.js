@@ -14,17 +14,27 @@ export const MapScreen = ({ route, navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
   const [latDelta, setLatDelta] = useState(0);
+  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
   const { lat, lng, viewport } = location;
 
-  // Check if a specific restaurant was passed
-  const { restaurant } = route.params || {};
-
+  // Update selected restaurant when navigating from RestaurantsDetails
   useEffect(() => {
-    const northeastLat = viewport.northeast.lat;
-    const southwestLat = viewport.southwest.lat;
-    const latDelta = northeastLat - southwestLat;
-    setLatDelta(latDelta);
+    if (route.params?.restaurant) {
+      setSelectedRestaurant(route.params.restaurant);
+    }
+  }, [route.params]);
+
+  // Update latDelta and reset selected restaurant on location change
+  useEffect(() => {
+    if (viewport) {
+      const northeastLat = viewport.northeast.lat;
+      const southwestLat = viewport.southwest.lat;
+      const latDelta = northeastLat - southwestLat;
+      setLatDelta(latDelta);
+    }
+    // Reset selected restaurant on new location search
+    setSelectedRestaurant(null);
   }, [location, viewport]);
 
   return (
@@ -32,30 +42,47 @@ export const MapScreen = ({ route, navigation }) => {
       <Search />
       <Map
         region={{
-          latitude: restaurant ? restaurant.geometry.location.lat : lat,
-          longitude: restaurant ? restaurant.geometry.location.lng : lng,
+          latitude: selectedRestaurant ? selectedRestaurant.geometry.location.lat : lat,
+          longitude: selectedRestaurant ? selectedRestaurant.geometry.location.lng : lng,
           latitudeDelta: latDelta,
           longitudeDelta: 0.02,
         }}
       >
-        {restaurants.map((rest) => (
+        {selectedRestaurant ? (
+          // Show only the selected restaurant marker
           <Marker
-            key={rest.name}
-            title={rest.name}
+            key={selectedRestaurant.name}
+            title={selectedRestaurant.name}
             coordinate={{
-              latitude: rest.geometry.location.lat,
-              longitude: rest.geometry.location.lng,
+              latitude: selectedRestaurant.geometry.location.lat,
+              longitude: selectedRestaurant.geometry.location.lng,
             }}
           >
-            <Callout
-              onPress={() =>
-                navigation.navigate("RestaurantsDetail", { restaurant: rest })
-              }
-            >
-              <MapCallout restaurant={rest} />
+            <Callout>
+              <MapCallout restaurant={selectedRestaurant} />
             </Callout>
           </Marker>
-        ))}
+        ) : (
+          // Show all restaurant markers
+          restaurants.map((rest) => (
+            <Marker
+              key={rest.name}
+              title={rest.name}
+              coordinate={{
+                latitude: rest.geometry.location.lat,
+                longitude: rest.geometry.location.lng,
+              }}
+            >
+              <Callout
+                onPress={() =>
+                  navigation.navigate("RestaurantsDetail", { restaurant: rest })
+                }
+              >
+                <MapCallout restaurant={rest} />
+              </Callout>
+            </Marker>
+          ))
+        )}
       </Map>
     </>
   );
