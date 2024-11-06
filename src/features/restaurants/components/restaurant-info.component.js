@@ -33,7 +33,7 @@ placeId
     const ratingArray= Array.from(new Array(Math.floor(rating)));
 return(
     <RestaurantCard elevation={5} >
-       <Favourite/>
+       <Favourite  restaurant ={ restaurant }/>
         < RestaurantCardCover key={name}  source={{uri:photos[0]}}/>
         <Info>
         <Text varient='label'>{name}</Text>
