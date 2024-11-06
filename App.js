@@ -10,7 +10,7 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato"; 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurant.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigator } from "./src/infrastructure/navigation/index";
-import { FavoritesContextProvider } from "./src/services/favourites/favourites.context";
+import {FavouritesContextProvider } from "./src/services/favourites/favourites1.context"
 
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
@@ -23,13 +23,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavoritesContextProvider>
+        <FavouritesContextProvider>
           <LocationContextProvider>
             <RestaurantsContextProvider>
               <Navigator />
             </RestaurantsContextProvider>
           </LocationContextProvider>
-        </FavoritesContextProvider>
+          </FavouritesContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

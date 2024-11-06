@@ -5,8 +5,8 @@ import {
  } from 'react-native';
 
 import { RestaurantInfo } from  '../components/restaurant-info.component';
-import {RestaurantsContext} from "../../../services/restaurants/restaurant.context";
-import { ActivityIndicator} from 'react-native-paper';
+import { RestaurantsContext } from "../../../services/restaurants/restaurant.context";
+import { ActivityIndicator } from 'react-native-paper';
 import { Search } from "../components/search.component";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeArea } from "../../../components/utility/safe-area.component";
@@ -34,6 +34,7 @@ left:50%;
 export const RestaurantsScreen =({navigation})=>
 { 
   const {restaurants,isLoading, error} = useContext(RestaurantsContext);
+
 
   return(
 <SafeArea >
