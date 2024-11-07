@@ -13,7 +13,7 @@ right: 25px;
 z-index: 9;
 `;
 
-export const Favourite = ({ restaurant }) => {
+export const Favourite = ({ restaurant   }) => {
 const { favourites, addToFavourites, removeFromFavourites } = useContext(
 FavouritesContext
 );
