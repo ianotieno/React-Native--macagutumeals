@@ -9,8 +9,11 @@ const FavouritesWrapper= styled.View`
 padding:10px
 `;
 export const FavouriteBar =({favourites,onNavigate })=> {
-    if(!favourites.length){
-        return null;
+    if(!favourites.length){ 
+        return( <Spacer variant="left.large">
+    <Text variant="caption">     No Favourites Selected </Text>
+       </Spacer>)
+       
     }
  return(
 <FavouritesWrapper>
