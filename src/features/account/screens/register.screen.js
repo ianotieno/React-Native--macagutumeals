@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Text } from "react-native";
+import AwesomeAlert from 'react-native-awesome-alerts'
 import {
   AccountBackground,
   AccountCover,
@@ -17,12 +18,25 @@ export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const { onRegister, isLoading, error } = useContext(AuthenticationContext);
+
+  const handleRegister = () => {
+    onRegister(email, password, repeatedPassword, () => {
+      setShowAlert(true); // Show the alert on successful registration
+    });
+  };
+
+  const handleAlertConfirm = () => {
+    setShowAlert(false); // Hide alert
+    navigation.navigate("Login"); // Navigate to Login screen
+  };
 
   return (
     <AccountBackground>
       <AccountCover />
+
       {isLoading ? (
         <LoadingContainer>
           <Loading
@@ -67,7 +81,7 @@ export const RegisterScreen = ({ navigation }) => {
               <AuthButton
                 icon="email"
                 mode="contained"
-                onPress={() => onRegister(email, password, repeatedPassword, navigation)}
+                onPress={handleRegister}
               >
                 Register
               </AuthButton>
@@ -80,6 +94,20 @@ export const RegisterScreen = ({ navigation }) => {
           </Spacer>
         </>
       )}
+
+      {/* Awesome Alert for Successful Registration */}
+      <AwesomeAlert
+        show={showAlert}
+        showProgress={false}
+        title="Registration Successful"
+        message="A verification email will be sent, Please verify to login."
+        closeOnTouchOutside={true}
+        closeOnHardwareBackPress={false}
+        showConfirmButton={true}
+        confirmText="OK"
+        confirmButtonColor="#DD6B55"
+        onConfirmPressed={handleAlertConfirm}
+      />
     </AccountBackground>
   );
 };

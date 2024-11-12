@@ -2,7 +2,7 @@
 
 import React, { createContext, useState } from "react";
 import { loginRequest } from "./authentication.service"; 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth } from "../../../firebase.config";
 
 export const AuthenticationContext = createContext();
@@ -26,38 +26,36 @@ export const AuthenticationContextProvider = ({ children }) => {
     }
   };
 
-  const onRegister = async (email, password, repeatedPassword, navigation ) => {
+   const onRegister = async (email, password, repeatedPassword, successCallback) => {
     setError(null);
     if (password !== repeatedPassword) {
       setError("Passwords do not match");
       return;
     }
-
+  
     setIsLoading(true);
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      setUser(userCredential.user);  // Set the registered user here
-      setError(null);
-      navigation.navigate("Login");
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+    
+      if (user) {
+        await sendEmailVerification(user)
+        setUser(user);
+        setError(null);
+        if (successCallback) successCallback();
+      } else {
+        setError("User creation failed");
+      }
     } catch (e) {
+      console.error("Error during registration:", e);
       setError(e.message);
-    } finally {
+    }finally {
       setIsLoading(false);
     }
   };
-   
-  const logout = () => {
-    setIsAuthenticated(false);
-    setUser(null);
-  };
-
   return (
     <AuthenticationContext.Provider
-      value={{ isAuthenticated, user, onRegister, login, logout, error, isLoading }}
+      value={{ isAuthenticated, user, onRegister, login, error, isLoading }}
     >
       {children}
     </AuthenticationContext.Provider>
