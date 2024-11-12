@@ -7,26 +7,19 @@ import {
   AuthInput,
   LoadingContainer,
   Loading,
+  ErrorContainer,
   Title,
 } from "../components/account.styles";
+import { Text } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useContext(AuthenticationContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const { login, error, isLoading } = useContext(AuthenticationContext);
 
-  const handleLogin = async () => {
-    setIsLoading(true);
-
-    // Simulate a 4-second loading time
-    setTimeout(async () => {
-      await login(email, password); // Perform the login
-      setIsLoading(false);
-    }, 4000); // 4000 ms = 4 seconds
-  };
+  
 
   return (
     <AccountBackground>
@@ -41,7 +34,7 @@ export const LoginScreen = ({ navigation }) => {
       ) : (
         <>
           <AccountCover />
-          <Title> MacAgutu Meals To Go</Title>
+          <Title>MacAgutu Meals To Go</Title>
           <AccountContainer>
             <AuthInput
               label="E-mail"
@@ -62,11 +55,17 @@ export const LoginScreen = ({ navigation }) => {
               />
             </Spacer>
 
+            {error && (
+          <ErrorContainer size="large">
+            <Text variant="error">{error}</Text>
+          </ErrorContainer>
+        )}
+
             <Spacer size="large">
               <AuthButton
                 icon="lock-open-outline"
                 mode="contained"
-                onPress={handleLogin}
+                onPress={()=>login(email,password)}
               >
                 Login
               </AuthButton>

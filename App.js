@@ -9,18 +9,9 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { Navigator } from "./src/infrastructure/navigation/index";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites1.context";
 import {AuthenticationContextProvider} from "./src/services/authentication/authentication.context"
-import { initializeApp } from "firebase/app";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAu9KQKkxyWT66nCEepjJjDmTyzK04N5G0",
-  authDomain: "macagutumeals.firebaseapp.com",
-  projectId: "macagutumeals",
-  storageBucket: "macagutumeals.firebasestorage.app",
-  messagingSenderId: "397904268460",
-  appId: "1:397904268460:web:cddddf090a840e0f6aa309"
-};
 
-const app = initializeApp(firebaseConfig);
+
 
 export default function App() {
  
