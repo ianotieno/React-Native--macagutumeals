@@ -7,6 +7,7 @@ export const Icon = styled.Image`
 `;
 
 export const RestaurantCard = styled(Card)`
+padding: ${(props) => props.theme.space[3]};
   background-color: ${(props) => props.theme.colors.bg.primary};
   width: 95%;
   align-self: center;
