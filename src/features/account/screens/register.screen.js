@@ -13,6 +13,9 @@ import {
 } from "../components/account.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { View } from "react-native";
+
 
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -48,7 +51,7 @@ export const RegisterScreen = ({ navigation }) => {
       ) : (
         <>
           <AccountContainer>
-            <Title>Meals To Go</Title>
+            <Title>MacAgutu Meals To Go</Title>
             <AuthInput
               label="E-mail"
               textContentType="emailAddress"
@@ -95,19 +98,33 @@ export const RegisterScreen = ({ navigation }) => {
         </>
       )}
 
-      {/* Awesome Alert for Successful Registration */}
       <AwesomeAlert
-        show={showAlert}
-        showProgress={false}
-        title="Registration Successful"
-        message="A verification email will be sent, Please verify to login."
-        closeOnTouchOutside={true}
-        closeOnHardwareBackPress={false}
-        showConfirmButton={true}
-        confirmText="OK"
-        confirmButtonColor="#DD6B55"
-        onConfirmPressed={handleAlertConfirm}
-      />
+      show={showAlert}
+      showProgress={false}
+      closeOnTouchOutside={false}
+      closeOnHardwareBackPress={false}
+      showConfirmButton={true}
+      confirmText="OK"
+      confirmButtonColor="#696AC3"
+      onConfirmPressed={handleAlertConfirm}
+      customView={
+        <View style={{ alignItems: "center" }}>
+          <Icon
+            name="check-circle"   // Choose the icon
+            size={50}              // Icon size
+            color="#696AC3"        // Icon color
+            style={{ marginBottom: 10 }}
+          />
+          <Text style={{ fontSize: 18, fontWeight: "bold", color: "#000", marginBottom: 5 }}>
+            Registration Successful
+          </Text>
+          <Text>
+          A verification email has been sent. Please verify to log in.
+          </Text>
+        </View>
+      }
+     
+    />
     </AccountBackground>
   );
 };
