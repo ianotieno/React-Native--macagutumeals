@@ -11,13 +11,12 @@ export const mocks = {
 };
 
 export const mockImages = [
-  "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-  "https://media.istockphoto.com/id/938742222/photo/cheesy-pepperoni-pizza.jpg?b=1&s=612x612&w=0&k=20&c=ZcLXrogjpyc5froC5ZIP-0uepbhldATwmCbt3mzViGQ=",
-  "https://www.foodiesfeed.com/wp-content/uploads/2020/08/detail-of-pavlova-strawberry-piece-of-cake-600x800.jpg",
-  "https://www.foodiesfeed.com/wp-content/uploads/2023/08/grilled-crispy-pork-with-rice.jpg",
-  "https://www.foodiesfeed.com/wp-content/uploads/2019/04/mae-mu-pancakes-600x750.jpg",
-  "https://www.foodiesfeed.com/wp-content/uploads/2023/08/bagel-at-home.jpg",
-  "https://www.foodiesfeed.com/wp-content/uploads/2019/02/pizza-ready-for-baking-600x400.jpg",
-  "https://www.foodiesfeed.com/wp-content/uploads/2023/06/coffee-crema.jpg",
-  "https://www.foodiesfeed.com/wp-content/uploads/2023/06/plate-of-noodles-with-shrimps.jpg",
+  "https://media.istockphoto.com/id/1457482294/photo/casados-typical-meal-found-in-roadside-soda-restaurants-costa-rica.jpg?s=1024x1024&w=is&k=20&c=ggo19eih-pm6RY50oVmwt0u6NhIqmv0UJWZDOFyYBIU=",
+ "https://media.istockphoto.com/id/1142277472/photo/pizza-slice-melted-cheese.jpg?s=1024x1024&w=is&k=20&c=VLOiB3dYufCJ0LyEh9A24_UcyBa9oCBHMLc6uo6aipA=",
+"https://media.istockphoto.com/id/1995853369/photo/various-flavors-ice-creams-in-display-freezer.jpg?s=1024x1024&w=is&k=20&c=QTUbbK4_nw_LDmaNBr1X0xvq7KeKhXcsu1o3snKwwpk=",
+"https://media.istockphoto.com/id/1611537194/photo/delicious-breakfast-cappuccino-and-peanut-paste-banana-toast-on-a-light-background-top-view.jpg?s=2048x2048&w=is&k=20&c=sQWXgOGeIXmOHKuxuJkQqL_7_5sO19AY6E4sn04oF2s=",
+"https://media.istockphoto.com/id/625144938/photo/red-wine.jpg?s=1024x1024&w=is&k=20&c=xDUu2zho26Id7zIzAhrWiFE_u8GaeOPTivdKTgHt8TQ=",
+"https://media.istockphoto.com/id/1663973234/photo/falafal-pita-sandwich.jpg?s=1024x1024&w=is&k=20&c=IyASIh7zs0ACoD7LnyqYxSvuWNVo320HbD-MyOSDeQM=",
+"https://media.istockphoto.com/id/2169648586/photo/close-up-of-two-wine-glasses-on-table-in-a-restaurant-outdoors.jpg?s=1024x1024&w=is&k=20&c=iHuHCTebB40ggRTpJyVYzZMdxw_s4722iRQVrWPQY9M=",
+"https://media.istockphoto.com/id/1432498098/photo/top-down-view-of-a-beautifu-vegetarian-cheese-platter-board-on-white-background.jpg?s=1024x1024&w=is&k=20&c=b5KKEjN-wfNwr7shW1uoWpCZ8WBH1IYnPtypioMH8lA=",
 ];

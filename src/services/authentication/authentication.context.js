@@ -2,7 +2,7 @@
 
 import React, { createContext, useState } from "react";
 import { loginRequest } from "./authentication.service"; 
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, signOut  } from "firebase/auth";
 import { auth } from "../../../firebase.config";
 
 export const AuthenticationContext = createContext();
@@ -53,9 +53,20 @@ export const AuthenticationContextProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      setIsAuthenticated(false);
+    } catch (err) {
+      setError("Failed to log out");
+      console.error("Error during logout:", err);
+    }
+  };
+
   return (
     <AuthenticationContext.Provider
-      value={{ isAuthenticated, user, onRegister, login, error, isLoading }}
+      value={{ isAuthenticated, user, onRegister,logout, login, error, isLoading }}
     >
       {children}
     </AuthenticationContext.Provider>
