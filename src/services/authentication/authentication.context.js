@@ -1,8 +1,12 @@
 // services/authentication/authentication.context.js
 
 import React, { createContext, useState } from "react";
-import { loginRequest } from "./authentication.service"; 
-import { createUserWithEmailAndPassword, sendEmailVerification, signOut  } from "firebase/auth";
+import { loginRequest } from "./authentication.service";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signOut,
+} from "firebase/auth";
 import { auth } from "../../../firebase.config";
 
 export const AuthenticationContext = createContext();
@@ -16,7 +20,9 @@ export const AuthenticationContextProvider = ({ children }) => {
   const login = async (email, password) => {
     setIsLoading(true);
     try {
-      await loginRequest(email, password);
+      const userCredential = await loginRequest(email, password); // Login request
+    const user = userCredential.user; 
+    setUser(user);
       setIsAuthenticated(true);
       setError(null);
     } catch (err) {
@@ -26,20 +32,29 @@ export const AuthenticationContextProvider = ({ children }) => {
     }
   };
 
-   const onRegister = async (email, password, repeatedPassword, successCallback) => {
+  const onRegister = async (
+    email,
+    password,
+    repeatedPassword,
+    successCallback
+  ) => {
     setError(null);
     if (password !== repeatedPassword) {
       setError("Passwords do not match");
       return;
     }
-  
+
     setIsLoading(true);
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
-    
+ 
       if (user) {
-        await sendEmailVerification(user)
+        await sendEmailVerification(user);
         setUser(user);
         setError(null);
         if (successCallback) successCallback();
@@ -49,7 +64,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     } catch (e) {
       console.error("Error during registration:", e);
       setError(e.message);
-    }finally {
+    } finally {
       setIsLoading(false);
     }
   };
@@ -66,7 +81,15 @@ export const AuthenticationContextProvider = ({ children }) => {
 
   return (
     <AuthenticationContext.Provider
-      value={{ isAuthenticated, user, onRegister,logout, login, error, isLoading }}
+      value={{
+        isAuthenticated,
+        user,
+        onRegister,
+        logout,
+        login,
+        error,
+        isLoading,
+      }}
     >
       {children}
     </AuthenticationContext.Provider>
